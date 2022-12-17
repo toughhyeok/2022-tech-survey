@@ -8,7 +8,7 @@ up:
 
 
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
-up_build:
+up_build: build_front
 	@echo "Stopping docker images (if running...)"
 	docker-compose down
 	@echo "Building (when required) and starting docker images..."
@@ -27,7 +27,7 @@ down:
 build_front:
 	@echo "Building front end binary..."
 	cd ../front-end/web && npm i && npm run build && \
-	cd ../ && env CGO_ENABLED=0 go build -o ${FRONT_END_BINARY} ./cmd
+	cd ../ && env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${FRONT_END_BINARY} ./cmd
 	@echo "Done!"
 
 ## start: starts the front end
