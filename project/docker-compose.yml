@@ -3,11 +3,26 @@ version: '3'
 services:
   front-end-service:
     build: 
-      context: ../front-end
-      dockerfile: ../front-end/front-end-service.dockerfile
+      context: ../front-end-service
+      dockerfile: ../front-end-service/front-end-service.dockerfile
     restart: always
     ports:
       - "8081:80"
     deploy:
       mode: replicated
       replicas: 1
+
+  postgres:
+    image: 'postgres:14.2'
+    ports:
+      - "5432:5432"
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: survey
+    volumes:
+      - ./db-data/postgres/:/var/lib/postgresql/data/

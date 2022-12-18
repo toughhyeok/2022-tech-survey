@@ -26,14 +26,14 @@ down:
 ## build_front: builds the frone end binary
 build_front:
 	@echo "Building front end binary..."
-	cd ../front-end/web && npm i && npm run build && \
+	cd ../front-end-service/web && npm i && npm run build && \
 	cd ../ && env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${FRONT_END_BINARY} ./cmd
 	@echo "Done!"
 
 ## start: starts the front end
 start: build_front
 	@echo "Starting front end"
-	cd ../front-end && ./${FRONT_END_BINARY} &
+	cd ../front-end-service && ./${FRONT_END_BINARY} &
 
 ## stop: stop the front end
 stop:

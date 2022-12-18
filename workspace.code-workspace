@@ -1,10 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "front-end"
+			"path": "front-end-service"
 		},
 		{
 			"path": "project"
+		},
+		{
+			"path": "broker-service"
 		}
 	],
 	"settings": {}
