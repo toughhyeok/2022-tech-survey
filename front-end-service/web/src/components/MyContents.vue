@@ -2,22 +2,22 @@
   <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="mt-5">Technology Trend</h1>
+                <h1 class="mt-5">Tech Trend 📈</h1>
                 <hr>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <h4 class="mt-5">Programming languages</h4>
-                <hr>
-                <div class="mt-1" style="outline: 1px solid silver; padding: 2em;">
+                <h2 class="mt-5">Programming languages</h2>
+                <div class="mt-1" style="padding: 2em;">
                     // 차트
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col">
-                <h4 class="mt-5">Web frameworks and technologies</h4>
-                <hr>
-                <div class="mt-1" style="outline: 1px solid silver; padding: 2em;">
+                <h2 class="mt-5">Programming languages</h2>
+                <div class="mt-1" style="padding: 2em;">
                     // 차트
                 </div>
             </div>
@@ -32,4 +32,11 @@ export default {
 </script>
 
 <style>
+h1, h2{
+    color: #2c3e50;
+    font-weight: 400;
+}
+h2 {
+    font-size: 1.2em;
+}
 </style>
