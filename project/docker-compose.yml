@@ -7,10 +7,34 @@ services:
       dockerfile: ../front-end-service/front-end-service.dockerfile
     restart: always
     ports:
+      - "4000:80"
+    deploy:
+      mode: replicated
+      replicas: 1
+    
+  broker-service:
+    build:
+      context: ../broker-service
+      dockerfile: ../broker-service/broker-service.dockerfile
+    restart: always
+    ports:
+      - "8080:80"
+    deploy:
+      mode: replicated
+      replicas: 1
+    
+  survey-service:
+    build:
+      context: ../survey-service
+      dockerfile: ../survey-service/survey-service.dockerfile
+    restart: always
+    ports:
       - "8081:80"
     deploy:
       mode: replicated
       replicas: 1
+    environment:
+      DSN: "host=postgres port=5432 user=postgres password=password dbname=survey sslmode=disable timezone=UTC connect_timeout=5"
 
   postgres:
     image: 'postgres:14.2'

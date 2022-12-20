@@ -1,4 +1,6 @@
 FRONT_END_BINARY=frontApp
+BROKER_BINARY=brokerApp
+SURVEY_BINARY=surveyApp
 
 ## up: starts all containers in the background without forcing build
 up:
@@ -6,15 +8,13 @@ up:
 	docker-compose up -d
 	@echo "Docker images started!"
 
-
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
-up_build: build_front
+up_build: build_front build_broker build_survey
 	@echo "Stopping docker images (if running...)"
 	docker-compose down
 	@echo "Building (when required) and starting docker images..."
 	docker-compose up --build -d
 	@echo "Docker images built and started!"
-
 
 ## down: stop docker compose
 down:
@@ -22,12 +22,23 @@ down:
 	docker-compose down
 	@echo "Done!"
 
-
-## build_front: builds the frone end binary
+## build_front: builds the front end binary
 build_front:
 	@echo "Building front end binary..."
 	cd ../front-end-service/web && npm i && npm run build && \
 	cd ../ && env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${FRONT_END_BINARY} ./cmd
+	@echo "Done!"
+
+## build_broker: builds the broker binary as a linux executable
+build_broker:
+	@echo "Building broker binary..."
+	cd ../broker-service && env GOOS=linux CGO_ENABLED=0 GOARCH=amd64 go build -o ${BROKER_BINARY} ./cmd/api
+	@echo "Done!"
+
+## build_survey: builds the survey binary as a linux executable
+build_survey:
+	@echo "Building survey binary..."
+	cd ../survey-service && env GOOS=linux CGO_ENABLED=0 GOARCH=amd64 go build -o ${SURVEY_BINARY} ./cmd/api
 	@echo "Done!"
 
 ## start: starts the front end

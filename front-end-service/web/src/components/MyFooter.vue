@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col text-center">
                 <hr>
-                <small class="text-muted">Copyright &copy; hotamul<br>response from 2022 Stack Overflow survey</small>
+                <small class="text-muted">Copyright &copy; hotamul<br>responses from 2022 Stack Overflow survey</small>
             </div>
         </div>
     </div>
